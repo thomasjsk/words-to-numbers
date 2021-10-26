@@ -23,7 +23,6 @@ export const teens = [
   "nineteen",
 ];
 export const tens = [
-  "ten",
   "twenty",
   "thirty",
   "forty",
@@ -33,8 +32,8 @@ export const tens = [
   "eighty",
   "ninety",
 ];
-// const multiply = (by) => (x) => x * by;
-const add = (to) => (x) => x + to;
+const forTens = (x) => (x + 2) * 10;
+const forTeens = (x) => x + 10;
 const toMap =
   (modifier = null) =>
   (obj, next, index) => {
@@ -44,8 +43,8 @@ const toMap =
   };
 export const dict = {
   ...ones.reduce(toMap(), {}),
-  ...teens.reduce(toMap(add(10)), {}),
-  // ...tens.reduce(toMap(multiply(10)), {}),
+  ...teens.reduce(toMap(forTeens), {}),
+  ...tens.reduce(toMap(forTens), {}),
 };
 
 export const parse = (string) => {
