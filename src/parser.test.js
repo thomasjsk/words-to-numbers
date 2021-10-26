@@ -8,16 +8,25 @@ const testArray = (arr) =>
   });
 describe("match word", () => {
   describe("single digit", () => {
-    testArray(ones);
+    ones.forEach((numberString, expected) => {
+      it(`should return ${expected} for ${numberString}`, () => {
+        expect(parse(numberString)).toEqual(expected);
+      });
+    });
   });
 
   describe("double digit", () => {
     describe("< 20", () => {
-      testArray(teens);
+      teens.forEach((numberString, index) => {
+        const expected = index + 10;
+        it(`should return ${expected} for ${numberString}`, () => {
+          expect(parse(numberString)).toEqual(expected);
+        });
+      });
     });
 
-    describe("< 100", () => {
-      testArray(tens);
-    });
+    //   describe("< 100", () => {
+    //     testArray(tens);
+    //   });
   });
 });

@@ -2,13 +2,13 @@ import { useState, useMemo } from "react";
 import { parse } from "./parser";
 
 function App() {
-  const [words, setWords] = useState();
+  const [words, setWords] = useState("");
   const handleChange = (event) => {
     setWords(event.target.value);
   };
   const text = useMemo(() => {
     try {
-      parse(words);
+      return parse(words);
     } catch (err) {
       return "";
     }
