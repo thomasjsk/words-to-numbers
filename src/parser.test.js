@@ -1,4 +1,4 @@
-import { ones, parse, teens } from "./parser";
+import { ones, parse, teens, tens } from "./parser";
 
 const testArray = (arr) =>
   arr.forEach((numberString, expected) => {
@@ -14,6 +14,10 @@ describe("match word", () => {
   describe("double digit", () => {
     describe("< 20", () => {
       testArray(teens);
+    });
+
+    describe("< 100", () => {
+      testArray(tens);
     });
   });
 });
