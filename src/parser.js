@@ -86,6 +86,6 @@ export const parse = (string) => {
         },
         { temp: null, result: [] }
       )
-      .join("")
+      .reduce((total, value) => total + value)
   );
 };
