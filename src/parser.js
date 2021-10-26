@@ -61,7 +61,14 @@ export const parse = (string) => {
         const match = dict[nextString];
 
         if (match instanceof Function) {
-          acc[index - 1] = match(acc[index - 1]);
+          const previousIndex = index - 1;
+
+          // typed only multiplier keyword
+          if (previousIndex < 0) {
+            acc.push(match(1));
+          } else {
+            acc[index - 1] = match(acc[index - 1]);
+          }
         } else {
           acc.push(match);
         }

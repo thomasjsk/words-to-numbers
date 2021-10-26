@@ -30,6 +30,17 @@ describe("match word", () => {
   });
 
   describe("multipliers", () => {
+    describe("just multiplier", () => {
+      [
+        ["hundred", 100],
+        ["thousand", 1000],
+        ["million", 1000000],
+      ].forEach(([string, expected]) => {
+        it(`should return ${expected} for only "${string}" typed`, () => {
+          expect(parse(string)).toEqual(expected);
+        });
+      });
+    });
     describe("single word number to multiply", () => {
       [
         {
