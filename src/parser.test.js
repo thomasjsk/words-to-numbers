@@ -41,7 +41,7 @@ describe("match word", () => {
         });
       });
     });
-    describe("single word number to multiply", () => {
+    describe("multiply single word number", () => {
       [
         {
           string: "five hundred",
@@ -63,6 +63,33 @@ describe("match word", () => {
         },
       ].forEach(({ string, multiplierString, multiplier, expected }) => {
         it(`should multiply by ${multiplier} if matched ${multiplierString}`, () => {
+          expect(parse(string)).toEqual(expected);
+        });
+      });
+    });
+
+    describe("multiply double word number", () => {
+      [
+        {
+          value: 51,
+          string: "fifty one hundred",
+          multiplierString: "hundred",
+          expected: 5100,
+        },
+        {
+          value: 39,
+          string: "thirty nine thousand",
+          multiplierString: "thousand",
+          expected: 39000,
+        },
+        {
+          value: 99,
+          string: "ninety nine million",
+          multiplierString: "million",
+          expected: 99000000,
+        },
+      ].forEach(({ string, multiplierString, value, expected }) => {
+        it(`should return ${expected} for ${value} if matched ${multiplierString}`, () => {
           expect(parse(string)).toEqual(expected);
         });
       });

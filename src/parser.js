@@ -57,24 +57,35 @@ export const parse = (string) => {
   return Number(
     string
       .split(" ")
-      .reduce((acc, nextString, index) => {
-        const match = dict[nextString];
+      .reduce(
+        ({ temp, result }, nextString, index, arr) => {
+          const match = dict[nextString];
 
-        if (match instanceof Function) {
-          const previousIndex = index - 1;
+          if (match instanceof Function) {
+            const previousIndex = index - 1;
 
-          // typed only multiplier keyword
-          if (previousIndex < 0) {
-            acc.push(match(1));
+            // typed only multiplier keyword
+            if (previousIndex < 0) {
+              result.push(match(1));
+            } else {
+              result.push(match(temp));
+              temp = null;
+            }
           } else {
-            acc[index - 1] = match(acc[index - 1]);
+            temp += match;
           }
-        } else {
-          acc.push(match);
-        }
 
-        return acc;
-      }, [])
+          if (index + 1 === arr.length) {
+            result.push(temp);
+            temp = null;
+
+            return result;
+          }
+
+          return { temp, result };
+        },
+        { temp: null, result: [] }
+      )
       .join("")
   );
 };
