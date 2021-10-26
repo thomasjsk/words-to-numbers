@@ -35,6 +35,7 @@ export const tens = [
 export const multipliers = {
   hundred: (value) => value * 100,
   thousand: (value) => value * 1000,
+  million: (value) => value * 1000000,
 };
 const forTens = (x) => (x + 2) * 10;
 const forTeens = (x) => x + 10;

@@ -41,5 +41,11 @@ describe("match word", () => {
 
       expect(parse(numberString)).toEqual(7000);
     });
+
+    it("should multiply by 1000000 if matched million", () => {
+      const numberString = "two million";
+
+      expect(parse(numberString)).toEqual(2000000);
+    });
   });
 });
