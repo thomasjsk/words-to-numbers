@@ -32,6 +32,9 @@ export const tens = [
   "eighty",
   "ninety",
 ];
+export const multipliers = {
+  hundred: (value) => value * 100,
+};
 const forTens = (x) => (x + 2) * 10;
 const forTeens = (x) => x + 10;
 const toMap =
@@ -45,8 +48,24 @@ export const dict = {
   ...ones.reduce(toMap(), {}),
   ...teens.reduce(toMap(forTeens), {}),
   ...tens.reduce(toMap(forTens), {}),
+  ...multipliers,
 };
 
 export const parse = (string) => {
-  return dict[string];
+  return Number(
+    string
+      .split(" ")
+      .reduce((acc, nextString, index) => {
+        const match = dict[nextString];
+
+        if (match instanceof Function) {
+          acc[index - 1] = match(acc[index - 1]);
+        } else {
+          acc.push(match);
+        }
+
+        return acc;
+      }, [])
+      .join("")
+  );
 };

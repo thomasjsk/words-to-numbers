@@ -28,4 +28,12 @@ describe("match word", () => {
       });
     });
   });
+
+  describe("multipliers", () => {
+    it("should multiply by 100 if matched hundred", () => {
+      const numberString = "five hundred";
+
+      expect(parse(numberString)).toEqual(500);
+    });
+  });
 });
