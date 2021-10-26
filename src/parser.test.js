@@ -1,7 +1,11 @@
+import { ones, parse } from "./parser";
+
 describe("match word", () => {
   describe("single digit", () => {
-    it("should work", () => {
-      expect(true).toEqual(true);
+    ones.forEach((numberString, expected) => {
+      it(`should return ${expected} for ${numberString}`, () => {
+        expect(parse(numberString)).toEqual(expected);
+      });
     });
   });
 });
