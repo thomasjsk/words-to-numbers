@@ -1,11 +1,19 @@
-import { ones, parse } from "./parser";
+import { ones, parse, teens } from "./parser";
 
+const testArray = (arr) =>
+  arr.forEach((numberString, expected) => {
+    it(`should return ${expected} for ${numberString}`, () => {
+      expect(parse(numberString)).toEqual(expected);
+    });
+  });
 describe("match word", () => {
   describe("single digit", () => {
-    ones.forEach((numberString, expected) => {
-      it(`should return ${expected} for ${numberString}`, () => {
-        expect(parse(numberString)).toEqual(expected);
-      });
+    testArray(ones);
+  });
+
+  describe("double digit", () => {
+    describe("< 20", () => {
+      testArray(teens);
     });
   });
 });
