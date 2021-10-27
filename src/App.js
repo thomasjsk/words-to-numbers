@@ -8,7 +8,8 @@ function App() {
   };
   const text = useMemo(() => {
     try {
-      return parse(words);
+      const result = parse(words);
+      return Number.isNaN(result) ? "" : result;
     } catch (err) {
       return "";
     }
