@@ -94,5 +94,32 @@ describe("match word", () => {
         });
       });
     });
+
+    describe("many multipliers", () => {
+      [
+        ["one hundred fifty four thousand", 154000],
+        ["five hundred million", 500000000],
+        ["thousand five hundred", 1500],
+        ["two hundred fifty four million seven hundred one", 254000701],
+      ].forEach(([string, expected]) => {
+        it(`should return ${expected} for ${string}`, () => {
+          expect(parse(string)).toEqual(expected);
+        });
+      });
+    });
+
+    describe("handle zero cases", () => {
+      [
+        ["zero", 0],
+        ["zero zero zero", 0],
+        ["zero hundred", 0],
+        ["zero zero million", 0],
+        ["zero million and zero thousand and one hundred", 100],
+      ].forEach(([string, expected]) => {
+        it(`should return ${expected} for ${string}`, () => {
+          expect(parse(string)).toEqual(expected);
+        });
+      });
+    });
   });
 });
