@@ -16,7 +16,12 @@ function App() {
 
   return (
     <div>
-      <input value={words} onChange={handleChange} type="text" />
+      <input
+        value={words}
+        onChange={handleChange}
+        type="text"
+        style={{ width: "100%" }}
+      />
       <div>
         <p>Output: {text}</p>
       </div>
